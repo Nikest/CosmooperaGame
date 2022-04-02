@@ -6,15 +6,15 @@ export interface IMain {
 }
 
 export interface ISystem extends IMain {
-  star:  string;
-  planets: number;
-  moons: number;
+  starId:  string;
+  planetsIds: string[];
+  moonsIds: string[];
   colonized: boolean;
-  orbitalStations: string[];
-  civilization: string;
-  habitats: string[];
-  countOfPerspectiveWorld: number;
-  position: {
+  civilizationId: string;
+  orbitalStationsIds: string[];
+  habitatsIds: string[];
+  numberOfPerspectiveWorld: number;
+  galaxyPosition: {
     x: number;
     y: number;
     z: number;
@@ -22,7 +22,7 @@ export interface ISystem extends IMain {
 }
 
 export interface IStar extends IMain {
-  system: string;
+  systemId: string;
   type: string;
   radius: number;
   mass: number;
@@ -34,7 +34,8 @@ export interface IStar extends IMain {
     B: number;
   };
   habitableZone: number[];
-  planets: string[];
+  planetsIds: string[];
+  planetsArray: IPlanet[];
 }
 
 export  interface IPlanet extends IMain {

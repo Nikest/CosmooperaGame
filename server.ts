@@ -4,22 +4,30 @@ import * as SocketIo from 'socket.io';
 
 import { ExpressApp, normalizePort, onError, onListening } from './Server/';
 import { socketClientEventsListener } from './Server/sockets';
-
 import { databaseConnect } from './Database';
 
-const app = new ExpressApp();
-const port = normalizePort(process.env.PORT || '3006');
+import { SpaceModuleInit } from './GameModules/Space';
 
-app.set('port', port);
-const server = createServer(app.express);
+Init();
+
+async function Init() {
+  const app = new ExpressApp();
+  const port = normalizePort(process.env.PORT || '3006');
+
+  app.set('port', port);
+  const server = createServer(app.express);
 
 // @ts-ignore
-const io = SocketIo(server);
-io.on('connection', socketClientEventsListener);
+  const io = SocketIo(server);
+  io.on('connection', socketClientEventsListener);
 
-server.listen(port);
-server.on('error', onError(port));
-server.on('listening', onListening(server));
-console.log('*** server started ***');
+  server.listen(port);
+  server.on('error', onError(port));
+  server.on('listening', onListening(server));
+  console.log('*** server started ***');
 
-databaseConnect().then(console.log).catch(console.error);
+  const dbConnect = await databaseConnect();
+  console.log(dbConnect);
+
+  SpaceModuleInit();
+}
