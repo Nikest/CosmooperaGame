@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 
+import homeRouter from '../Routes/homeRoute';
+
 export class ExpressApp {
   public express: Express.Express;
 
@@ -16,7 +18,10 @@ export class ExpressApp {
     this.express.use(Express.json());
     this.express.use(Express.urlencoded({ extended: false }));
     this.express.use(cookieParser());
-    this.express.use(Express.static(path.join(__dirname, 'GameClient')));
+    this.express.use(Express.static(path.join(__dirname, '../GameClient')));
+
+    // @ts-ignore
+    this.express.use('/', homeRouter);
   }
 
   public set(prop: string, value: number) {

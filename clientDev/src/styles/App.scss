@@ -1,0 +1,44 @@
+$mainFont: 'Montserrat', sans-serif;
+$decorationFont: 'Alumni Sans', sans-serif;
+
+body {
+  font-family: $mainFont;
+  font-weight: 100;
+  color: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-style: normal;
+}
+
+b {
+  font-weight: 800;
+}
+
+i {
+  font-weight: 100;
+}
+
+p, span {
+  font-weight: 400;
+}
+
+.main-bg {
+  background: rgb(21,20,41);
+  background: linear-gradient(341deg, rgba(21,20,41,1) 0%, rgba(34,27,21,1) 100%);
+}
+
+.app-main {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}

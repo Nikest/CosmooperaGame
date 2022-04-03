@@ -12,13 +12,17 @@ Init();
 
 async function Init() {
   const app = new ExpressApp();
-  const port = normalizePort(process.env.PORT || '3006');
+  const port = normalizePort(process.env.PORT || '3007');
 
   app.set('port', port);
   const server = createServer(app.express);
 
 // @ts-ignore
-  const io = SocketIo(server);
+  const io = SocketIo(server, {
+    cors: {
+      origin: '*',
+    },
+  });
   io.on('connection', socketClientEventsListener);
 
   server.listen(port);
